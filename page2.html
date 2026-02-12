@@ -3,13 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Some lil I really love</title>
-    <link rel="stylesheet" href="style.css">
+    <title>some lil I really love</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #fff7ed;
+            font-family: 'Quicksand', 'Segoe UI', 'Handlee', cursive, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        h2 {
+            color: #a75b4b;
+            font-size: 4rem;
+            font-weight: 400;
+            letter-spacing: 6px;
+            line-height: 1.3;
+            text-shadow: 2px 2px 8px rgba(167, 91, 75, 0.1);
+            animation: breathe 4s infinite ease-in-out;
+        }
+        
+        .arrow {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 4rem;
+            text-decoration: none;
+            color: #b76e79;
+            text-shadow: 0 0 20px #ffb6c1;
+            transition: transform 0.3s;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .arrow:hover {
+            transform: translateX(12px);
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.02); opacity: 1; }
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #ffb6c1; }
+            to { text-shadow: 0 0 40px #ff9eb5; }
+        }
+        
+        @media (max-width: 600px) {
+            h2 { font-size: 2.5rem; }
+        }
+    </style>
 </head>
-<body class="page-cream">
-    <div class="container centered">
-        <h2 class="title-soft">Some lil I really love</h2>
+<body>
+    <div class="container">
+        <h2>Some lil I<br>really love</h2>
     </div>
+    
     <a href="page3.html" class="arrow">→</a>
 </body>
 </html>
