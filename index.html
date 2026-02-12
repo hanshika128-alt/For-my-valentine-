@@ -3,20 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For you</title>
-    <link rel="stylesheet" href="style.css">
+    <title>for you, axam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #fde2e4;
+            font-family: 'Quicksand', 'Segoe UI', 'Handlee', cursive, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        h1 {
+            color: #9d174d;
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 4px rgba(157, 23, 77, 0.1);
+            animation: fadeIn 1.2s ease;
+        }
+        
+        .subtitle {
+            color: #9d174d;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            animation: fadeIn 1.2s ease 0.3s both;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            animation: fadeIn 1.2s ease 0.6s both;
+        }
+        
+        .btn {
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 60px;
+            font-size: 1.6rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(157, 23, 77, 0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-yes {
+            background: #ffb3b3;
+            color: #7f1d1d;
+            border: 2px solid #ff9e9e;
+        }
+        
+        .btn-no {
+            background: #f1d5d5;
+            color: #7f1d1d;
+            border: 2px solid #e6b8b8;
+        }
+        
+        .btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 28px rgba(157, 23, 77, 0.25);
+        }
+        
+        #noMessage {
+            color: #b91c1c;
+            font-size: 2.2rem;
+            margin-top: 2.5rem;
+            font-weight: 600;
+            animation: shake 0.6s ease;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .arrow {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 4rem;
+            text-decoration: none;
+            color: #b76e79;
+            text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ffb6c1;
+            transition: transform 0.3s, text-shadow 0.3s;
+            line-height: 1;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .arrow:hover {
+            transform: translateX(12px);
+            color: #a1535e;
+            text-shadow: 0 0 30px #ff9eb5, 0 0 60px #ff9eb5;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-15px); }
+            40% { transform: translateX(15px); }
+            60% { transform: translateX(-8px); }
+            80% { transform: translateX(8px); }
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ffb6c1; }
+            to { text-shadow: 0 0 30px #ff9eb5, 0 0 70px #ff9eb5; }
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 3.5rem; }
+            .subtitle { font-size: 1.4rem; }
+            .btn { padding: 0.9rem 2rem; font-size: 1.2rem; }
+            .button-group { gap: 1rem; }
+        }
+    </style>
 </head>
-<body class="page-entry">
-    <div class="container centered">
-        <h1 class="fade-in">For you</h1>
-        <p class="subtitle fade-in delay-1">I made something for you, wanna see?</p>
-        <div class="button-group fade-in delay-2">
+<body>
+    <div class="container">
+        <h1>For you</h1>
+        <p class="subtitle">I made something for you, wanna see?</p>
+        <div class="button-group">
             <a href="page2.html" class="btn btn-yes">Yes ❤️</a>
             <button id="noBtn" class="btn btn-no">No 😭</button>
         </div>
-        <div id="noMessage" class="hidden shake">How dare you?</div>
+        <div id="noMessage" class="hidden">How dare you? 😭💔</div>
     </div>
+    
     <a href="page2.html" class="arrow">→</a>
-    <script src="script.js"></script>
+    
+    <script>
+        document.getElementById('noBtn').addEventListener('click', function() {
+            let msg = document.getElementById('noMessage');
+            msg.classList.remove('hidden');
+            msg.style.animation = 'none';
+            msg.offsetHeight;
+            msg.style.animation = 'shake 0.6s ease';
+            
+            setTimeout(() => {
+                msg.style.animation = 'none';
+            }, 600);
+        });
+    </script>
 </body>
 </html>
