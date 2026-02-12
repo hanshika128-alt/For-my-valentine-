@@ -3,17 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I hope you liked it</title>
-    <link rel="stylesheet" href="style.css">
+    <title>i love you forever</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #b82e4a;
+            background: radial-gradient(circle at 20% 30%, #c43a5a, #9e1e3a);
+            font-family: 'Quicksand', 'Segoe UI', 'Handlee', cursive, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .final-heading {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .big-heart {
+            background: #ffb7c5;
+            width: 400px;
+            height: 350px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(80, 0, 20, 0.4), inset 0 -10px 30px rgba(180, 70, 90, 0.3);
+            transform: rotate(-5deg) scale(0.95);
+            transition: all 0.5s ease;
+            margin: 0 auto;
+            position: relative;
+            animation: heartbeat 2.5s infinite, fadeIn 1.5s ease;
+        }
+        
+        .big-heart:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 30px 80px rgba(100, 0, 30, 0.5);
+        }
+        
+        .heart-text {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.5;
+            text-shadow: 3px 3px 8px #982b4b;
+            padding: 1rem;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: rotate(-5deg) scale(0.95); }
+            50% { transform: rotate(-5deg) scale(1.02); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: rotate(-5deg) scale(0.8); }
+            to { opacity: 1; transform: rotate(-5deg) scale(0.95); }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 600px) {
+            .final-heading { font-size: 2rem; }
+            .big-heart { width: 280px; height: 250px; }
+            .heart-text { font-size: 1.6rem; }
+        }
+    </style>
 </head>
-<body class="page-final">
-    <div class="container centered">
+<body>
+    <div class="container">
         <h2 class="final-heading">I hope you liked it</h2>
+        
         <div class="big-heart">
             <div class="heart-text">
                 I love you forever<br>my Axam
             </div>
         </div>
     </div>
+    
+    <!-- No arrow — the end. quiet. soft. perfect. -->
 </body>
 </html>
