@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>i love you forever</title>
+    <title>I love you forever 💞</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,95 +14,122 @@
         }
         
         body {
-            background: #b82e4a;
-            background: radial-gradient(circle at 20% 30%, #c43a5a, #9e1e3a);
-            font-family: 'Quicksand', 'Segoe UI', 'Handlee', cursive, sans-serif;
-            min-height: 100vh;
+            background: linear-gradient(135deg, #d53a6b, #b82b5a);
+            font-family: 'Quicksand', sans-serif;
+            height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             position: relative;
         }
         
         .container {
             text-align: center;
-            padding: 2rem;
+            animation: fadeIn 2s ease;
         }
         
-        .final-heading {
+        .message {
+            font-size: 2.5rem;
             color: white;
-            font-size: 3rem;
+            font-weight: 300;
             margin-bottom: 3rem;
-            font-weight: 400;
-            letter-spacing: 6px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-            animation: fadeInDown 1s ease;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .heart-container {
+            cursor: default;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .heart-container:hover {
+            transform: scale(1.05);
         }
         
         .big-heart {
-            background: #ffb7c5;
-            width: 400px;
-            height: 350px;
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 60px rgba(80, 0, 20, 0.4), inset 0 -10px 30px rgba(180, 70, 90, 0.3);
-            transform: rotate(-5deg) scale(0.95);
-            transition: all 0.5s ease;
-            margin: 0 auto;
+            width: 250px;
+            height: 250px;
+            background-color: #ffa5b0;
             position: relative;
-            animation: heartbeat 2.5s infinite, fadeIn 1.5s ease;
+            transform: rotate(-45deg);
+            margin: 50px auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: heartbeat 1.5s infinite;
         }
         
-        .big-heart:hover {
-            transform: rotate(0deg) scale(1.02);
-            box-shadow: 0 30px 80px rgba(100, 0, 30, 0.5);
+        .big-heart::before,
+        .big-heart::after {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background-color: #ffa5b0;
+            border-radius: 50%;
+        }
+        
+        .big-heart::before {
+            top: -125px;
+            left: 0;
+        }
+        
+        .big-heart::after {
+            left: 125px;
+            top: 0;
         }
         
         .heart-text {
+            position: relative;
+            z-index: 2;
             color: white;
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 500;
+            max-width: 200px;
+            margin: 0 auto;
             text-align: center;
-            line-height: 1.5;
-            text-shadow: 3px 3px 8px #982b4b;
-            padding: 1rem;
+            line-height: 1.4;
+            transform: rotate(0deg);
         }
         
-        @keyframes heartbeat {
-            0%, 100% { transform: rotate(-5deg) scale(0.95); }
-            50% { transform: rotate(-5deg) scale(1.02); }
+        .heart-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 200px;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.5;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: rotate(-5deg) scale(0.8); }
-            to { opacity: 1; transform: rotate(-5deg) scale(0.95); }
-        }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @media (max-width: 600px) {
-            .final-heading { font-size: 2rem; }
-            .big-heart { width: 280px; height: 250px; }
-            .heart-text { font-size: 1.6rem; }
+        @keyframes heartbeat {
+            0% { transform: rotate(-45deg) scale(1); }
+            14% { transform: rotate(-45deg) scale(1.1); }
+            28% { transform: rotate(-45deg) scale(1); }
+            42% { transform: rotate(-45deg) scale(1.1); }
+            70% { transform: rotate(-45deg) scale(1); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2 class="final-heading">I hope you liked it</h2>
+        <div class="message">I hope you liked it</div>
         
-        <div class="big-heart">
-            <div class="heart-text">
-                I love you forever<br>my Axam
+        <div class="heart-container">
+            <div class="big-heart">
+                <div class="heart-content">
+                    I love you<br>forever<br>my Axam
+                </div>
             </div>
         </div>
     </div>
-    
-    <!-- No arrow — the end. quiet. soft. perfect. -->
 </body>
 </html>
