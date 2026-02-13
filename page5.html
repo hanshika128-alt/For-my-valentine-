@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>a special vm for you</title>
+    <title>Voice Note 🎙️</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,93 +14,102 @@
         }
         
         body {
-            background: linear-gradient(145deg, #ffe5e5, #ffd9d9);
-            font-family: 'Quicksand', 'Segoe UI', sans-serif;
-            min-height: 100vh;
+            background: linear-gradient(135deg, #fde2e4, #ffe4e1);
+            font-family: 'Quicksand', sans-serif;
+            height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             position: relative;
         }
         
         .container {
             text-align: center;
-            padding: 2rem;
-            background: rgba(255, 245, 245, 0.7);
-            border-radius: 60px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 30px 50px rgba(180, 80, 80, 0.1);
         }
         
-        .voice-heading {
-            font-size: 2.5rem;
-            color: #a14545;
+        h2 {
+            font-size: 2rem;
+            color: #9d174d;
+            font-weight: 400;
             margin-bottom: 3rem;
-            font-weight: 500;
-            text-shadow: 2px 2px 0 #ffe0e0;
+            letter-spacing: 1px;
         }
         
-        .play-container {
+        .voice-container {
             position: relative;
-            margin: 2rem 0 1rem;
-        }
-        
-        .play-btn {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #ff8a8a, #c45a5a);
-            border: none;
-            font-size: 4rem;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 15px 0 #8f3e3e, 0 20px 40px rgba(196, 90, 90, 0.4);
-            transition: all 0.1s ease;
-            line-height: 1;
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin: 0 auto;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            align-items: center;
         }
         
-        .play-btn:active {
-            transform: translateY(15px);
-            box-shadow: 0 5px 0 #8f3e3e, 0 20px 40px rgba(196, 90, 90, 0.4);
+        .heart-ring {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(157, 23, 77, 0.1);
+            animation: pulse 2s infinite;
         }
         
-        .pulse-heart {
-            font-size: 4.5rem;
-            margin-top: 2rem;
-            animation: pulseRing 1.5s infinite;
-            display: inline-block;
+        .heart-ring::before,
+        .heart-ring::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(157, 23, 77, 0.1);
+            animation: pulse 2s infinite 0.5s;
         }
         
-        .play-status {
-            font-size: 1.5rem;
-            color: #a14545;
-            margin-top: 1.5rem;
-            font-weight: 500;
-            min-height: 3rem;
+        .play-button {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #9d174d;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(157, 23, 77, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
-        .hidden {
-            display: none !important;
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(157, 23, 77, 0.5);
+        }
+        
+        .play-button svg {
+            width: 50px;
+            height: 50px;
+            fill: white;
+            margin-left: 5px;
+        }
+        
+        .play-button.paused svg {
+            fill: white;
         }
         
         .arrow {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            font-size: 4rem;
-            text-decoration: none;
-            color: #b76e79;
-            text-shadow: 0 0 20px #ffb6c1;
-            transition: transform 0.3s;
-            animation: glow 2s infinite alternate;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(157, 23, 77, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(157, 23, 77, 0.3);
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s;
         }
         
         .arrow.visible {
@@ -107,95 +118,78 @@
         }
         
         .arrow:hover {
-            transform: translateX(12px);
+            background-color: rgba(157, 23, 77, 0.3);
+            transform: scale(1.1);
         }
         
-        @keyframes pulseRing {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.3); opacity: 1; }
+        .arrow svg {
+            width: 30px;
+            height: 30px;
+            fill: none;
+            stroke: #9d174d;
+            stroke-width: 2;
         }
         
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #ffb6c1; }
-            to { text-shadow: 0 0 40px #ff9eb5; }
-        }
-        
-        @media (max-width: 600px) {
-            .voice-heading { font-size: 1.8rem; }
-            .play-btn { width: 100px; height: 100px; font-size: 3rem; }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h3 class="voice-heading">a special vm for you</h3>
+        <h2>a special vm for you</h2>
         
-        <div class="play-container">
-            <button id="playPauseBtn" class="play-btn">▶</button>
-        </div>
-        
-        <div id="pulseHeart" class="pulse-heart hidden">❤️</div>
-        <p id="playStatus" class="play-status"></p>
-        
-        <!-- AUDIO ELEMENT - REPLACE THIS WITH YOUR OWN VOICE NOTE -->
-        <audio id="voiceNote" src=""></audio>
-        
-        <!-- INSTRUCTIONS FOR ADDING VOICE NOTE -->
-        <div style="margin-top: 2rem; padding: 1rem; background: #fff0f0; border-radius: 20px; max-width: 400px;">
-            <p style="color: #9d174d; font-size: 1rem;">📱 TO ADD YOUR VOICE NOTE:</p>
-            <p style="color: #4e3e3e; font-size: 0.9rem; margin-top: 0.5rem;">1. Record your message<br>2. Save as "voice-note.mp3"<br>3. Create folder named "audio"<br>4. Place file at: audio/voice-note.mp3</p>
+        <div class="voice-container">
+            <div class="heart-ring"></div>
+            <button class="play-button" id="playButton" onclick="togglePlay()">
+                <svg viewBox="0 0 24 24">
+                    <polygon points="5,3 19,12 5,21" />
+                </svg>
+            </button>
         </div>
     </div>
     
-    <a href="page6.html" id="finalArrow" class="arrow">→</a>
+    <div class="arrow" id="arrow" onclick="nextPage()">
+        <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round"/>
+        </svg>
+    </div>
+    
+    <audio id="voiceNote" src="audio/voice-note.mp3"></audio>
     
     <script>
-        (function() {
-            const playBtn = document.getElementById('playPauseBtn');
-            const audio = document.getElementById('voiceNote');
-            const pulseHeart = document.getElementById('pulseHeart');
-            const finalArrow = document.getElementById('finalArrow');
-            const playStatus = document.getElementById('playStatus');
-            
-            // Set the audio source - CHANGE THIS PATH TO MATCH YOUR FILE
-            audio.src = 'audio/voice-note.mp3';
-            
-            playBtn.addEventListener('click', function() {
-                if (audio.paused) {
-                    audio.play()
-                        .then(() => {
-                            playBtn.textContent = '⏸';
-                            pulseHeart.classList.remove('hidden');
-                            playStatus.textContent = 'Listening... ❤️';
-                        })
-                        .catch(error => {
-                            playStatus.textContent = 'Please add voice note to /audio/ folder 🎙️';
-                            console.log('Audio not found:', error);
-                        });
-                } else {
-                    audio.pause();
-                    playBtn.textContent = '▶';
-                    pulseHeart.classList.add('hidden');
-                    playStatus.textContent = 'Paused';
-                }
-            });
-            
-            audio.addEventListener('ended', function() {
-                playBtn.textContent = '▶';
-                pulseHeart.classList.add('hidden');
-                playStatus.textContent = 'Finished ❤️ Thank you for listening';
-                finalArrow.classList.add('visible');
-            });
-            
-            audio.addEventListener('play', function() {
-                finalArrow.classList.remove('visible');
-            });
-            
-            // Try to preload audio
-            audio.addEventListener('error', function() {
-                playStatus.textContent = '🎙️ Record your voice & save as audio/voice-note.mp3';
-            });
-        })();
+        const audio = document.getElementById('voiceNote');
+        const playButton = document.getElementById('playButton');
+        const arrow = document.getElementById('arrow');
+        
+        audio.addEventListener('ended', function() {
+            playButton.classList.remove('paused');
+            playButton.innerHTML = `<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" /></svg>`;
+            arrow.classList.add('visible');
+        });
+        
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playButton.classList.add('paused');
+                playButton.innerHTML = `<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
+            } else {
+                audio.pause();
+                playButton.classList.remove('paused');
+                playButton.innerHTML = `<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" /></svg>`;
+            }
+        }
+        
+        function nextPage() {
+            window.location.href = 'page6.html';
+        }
     </script>
 </body>
 </html>
