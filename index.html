@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>for you, axam</title>
+    <title>For you 💗</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,160 +14,186 @@
         }
         
         body {
-            background: #fde2e4;
-            font-family: 'Quicksand', 'Segoe UI', 'Handlee', cursive, sans-serif;
-            min-height: 100vh;
+            background-color: #fde2e4;
+            font-family: 'Quicksand', sans-serif;
+            height: 100vh;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
             position: relative;
-            transition: all 0.5s ease;
+            overflow: hidden;
         }
         
         .container {
             text-align: center;
-            max-width: 800px;
-            padding: 2rem;
+            animation: fadeIn 2s ease;
         }
         
         h1 {
+            font-size: 4rem;
             color: #9d174d;
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            letter-spacing: 4px;
-            text-shadow: 2px 2px 4px rgba(157, 23, 77, 0.1);
-            animation: fadeIn 1.2s ease;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            animation: softGlow 3s infinite alternate;
         }
         
         .subtitle {
+            font-size: 1.5rem;
             color: #9d174d;
-            font-size: 2rem;
+            font-weight: 300;
             margin-bottom: 3rem;
-            font-weight: 400;
-            animation: fadeIn 1.2s ease 0.3s both;
+            opacity: 0.9;
         }
         
-        .button-group {
+        .buttons {
             display: flex;
             gap: 2rem;
             justify-content: center;
-            animation: fadeIn 1.2s ease 0.6s both;
+            align-items: center;
         }
         
         .btn {
+            padding: 1rem 2.5rem;
             border: none;
-            padding: 1.2rem 3rem;
-            border-radius: 60px;
-            font-size: 1.6rem;
+            border-radius: 50px;
             font-family: 'Quicksand', sans-serif;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 500;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(157, 23, 77, 0.15);
+            box-shadow: 0 4px 15px rgba(157, 23, 77, 0.2);
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
         }
         
         .btn-yes {
-            background: #ffb3b3;
-            color: #7f1d1d;
-            border: 2px solid #ff9e9e;
+            background-color: #9d174d;
+            color: white;
+        }
+        
+        .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(157, 23, 77, 0.3);
         }
         
         .btn-no {
-            background: #f1d5d5;
-            color: #7f1d1d;
-            border: 2px solid #e6b8b8;
+            background-color: transparent;
+            color: #9d174d;
+            border: 2px solid #9d174d;
         }
         
-        .btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 12px 28px rgba(157, 23, 77, 0.25);
+        .btn-no:hover {
+            background-color: rgba(157, 23, 77, 0.05);
         }
         
-        #noMessage {
-            color: #b91c1c;
-            font-size: 2.2rem;
-            margin-top: 2.5rem;
-            font-weight: 600;
-            animation: shake 0.6s ease;
-        }
-        
-        .hidden {
+        .no-message {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #9d174d;
+            font-weight: 500;
             display: none;
+            animation: shake 0.5s ease;
         }
         
         .arrow {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            font-size: 4rem;
-            text-decoration: none;
-            color: #b76e79;
-            text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ffb6c1;
-            transition: transform 0.3s, text-shadow 0.3s;
-            line-height: 1;
-            animation: glow 2s infinite alternate;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(157, 23, 77, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(157, 23, 77, 0.3);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .arrow.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
         
         .arrow:hover {
-            transform: translateX(12px);
-            color: #a1535e;
-            text-shadow: 0 0 30px #ff9eb5, 0 0 60px #ff9eb5;
+            background-color: rgba(157, 23, 77, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .arrow svg {
+            width: 30px;
+            height: 30px;
+            fill: none;
+            stroke: #9d174d;
+            stroke-width: 2;
         }
         
         @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes softGlow {
+            from { text-shadow: 0 0 10px rgba(157, 23, 77, 0.3); }
+            to { text-shadow: 0 0 20px rgba(157, 23, 77, 0.6); }
         }
         
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-15px); }
-            40% { transform: translateX(15px); }
-            60% { transform: translateX(-8px); }
-            80% { transform: translateX(8px); }
-        }
-        
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #ffb6c1, 0 0 40px #ffb6c1; }
-            to { text-shadow: 0 0 30px #ff9eb5, 0 0 70px #ff9eb5; }
-        }
-        
-        @media (max-width: 600px) {
-            h1 { font-size: 3.5rem; }
-            .subtitle { font-size: 1.4rem; }
-            .btn { padding: 0.9rem 2rem; font-size: 1.2rem; }
-            .button-group { gap: 1rem; }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-5px); }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>For you</h1>
-        <p class="subtitle">I made something for you, wanna see?</p>
-        <div class="button-group">
-            <a href="page2.html" class="btn btn-yes">Yes ❤️</a>
-            <button id="noBtn" class="btn btn-no">No 😭</button>
+        <div class="subtitle">I made something for you, wanna see?</div>
+        
+        <div class="buttons">
+            <button class="btn btn-yes" onclick="handleYes()">Yes ❤️</button>
+            <button class="btn btn-no" onclick="handleNo()">No 😭</button>
         </div>
-        <div id="noMessage" class="hidden">How dare you? 😭💔</div>
+        
+        <div class="no-message" id="noMessage">
+            How dare you? 💔
+        </div>
     </div>
     
-    <a href="page2.html" class="arrow">→</a>
+    <div class="arrow" id="arrow" onclick="nextPage()">
+        <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round"/>
+        </svg>
+    </div>
     
     <script>
-        document.getElementById('noBtn').addEventListener('click', function() {
-            let msg = document.getElementById('noMessage');
-            msg.classList.remove('hidden');
-            msg.style.animation = 'none';
-            msg.offsetHeight;
-            msg.style.animation = 'shake 0.6s ease';
+        function handleYes() {
+            document.getElementById('arrow').classList.add('visible');
+            document.querySelector('.btn-yes').style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                document.querySelector('.btn-yes').style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        function handleNo() {
+            const message = document.getElementById('noMessage');
+            message.style.display = 'block';
+            message.style.animation = 'none';
+            message.offsetHeight;
+            message.style.animation = 'shake 0.5s ease';
             
             setTimeout(() => {
-                msg.style.animation = 'none';
-            }, 600);
-        });
+                message.style.display = 'none';
+            }, 2000);
+        }
+        
+        function nextPage() {
+            window.location.href = 'page2.html';
+        }
     </script>
 </body>
 </html>
