@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sunflower surprise 🌻</title>
+    <title>For You 🌻</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,96 +14,106 @@
         }
         
         body {
-            background: #fef9e7;
-            font-family: 'Quicksand', 'Segoe UI', 'Handlee', cursive, sans-serif;
-            min-height: 100vh;
+            background: linear-gradient(135deg, #fef7e0, #fff1c1);
+            font-family: 'Quicksand', sans-serif;
+            height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             position: relative;
         }
         
         .container {
             text-align: center;
-            padding: 2rem;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .sunflower-container {
+            margin-bottom: 2rem;
+            animation: float 3s infinite alternate ease-in-out;
         }
         
         .sunflower-gif {
-            max-width: 350px;
-            border-radius: 50px;
-            margin-bottom: 2rem;
-            box-shadow: 0 25px 40px rgba(196, 123, 74, 0.25);
-            animation: float 6s infinite ease-in-out;
+            width: 300px;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
-        .sunflower-caption {
-            font-size: 2.5rem;
-            color: #c47b4a;
-            font-weight: 500;
-            text-shadow: 2px 2px 0 #ffe5c4;
-            animation: fadeInUp 1s ease;
+        .message {
+            font-size: 2rem;
+            color: #a67c00;
+            font-weight: 400;
+            margin-top: 2rem;
+            animation: softGlow 2s infinite alternate;
         }
         
         .arrow {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            font-size: 4rem;
-            text-decoration: none;
-            color: #b76e79;
-            text-shadow: 0 0 20px #ffb6c1;
-            transition: transform 0.3s;
-            animation: glow 2s infinite alternate;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(166, 124, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(166, 124, 0, 0.3);
         }
         
         .arrow:hover {
-            transform: translateX(12px);
+            background-color: rgba(166, 124, 0, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .arrow svg {
+            width: 30px;
+            height: 30px;
+            fill: none;
+            stroke: #a67c00;
+            stroke-width: 2;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
         }
         
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #ffb6c1; }
-            to { text-shadow: 0 0 40px #ff9eb5; }
-        }
-        
-        @media (max-width: 600px) {
-            .sunflower-gif { max-width: 250px; }
-            .sunflower-caption { font-size: 1.8rem; }
+        @keyframes softGlow {
+            from { text-shadow: 0 0 10px rgba(166, 124, 0, 0.3); }
+            to { text-shadow: 0 0 20px rgba(166, 124, 0, 0.6); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Built-in animated sunflower using pure CSS since GIF might not exist -->
-        <div style="position: relative; width: 300px; height: 300px; margin: 0 auto 2rem auto;">
-            <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 15px; height: 200px; background: linear-gradient(to right, #6b8e4c, #4a7023); border-radius: 10px;"></div>
-            <div style="position: absolute; bottom: 160px; left: 50%; transform: translateX(-50%); width: 180px; height: 180px; background: radial-gradient(circle at 30% 30%, #ffd166, #ffb347); border-radius: 50%; box-shadow: 0 0 40px #ffb347; animation: spin 20s infinite linear;">
-                <div style="position: absolute; top: 10px; left: 10px; width: 30px; height: 30px; background: #8b5a2b; border-radius: 50%;"></div>
-                <div style="position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; background: #8b5a2b; border-radius: 50%;"></div>
-                <div style="position: absolute; bottom: 10px; left: 10px; width: 30px; height: 30px; background: #8b5a2b; border-radius: 50%;"></div>
-                <div style="position: absolute; bottom: 10px; right: 10px; width: 30px; height: 30px; background: #8b5a2b; border-radius: 50%;"></div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: #8b4513; border-radius: 50%; box-shadow: inset -5px -5px 15px #5a2e0c;"></div>
-            </div>
+        <div class="sunflower-container">
+            <!-- Using a beautiful animated sunflower bouquet GIF -->
+            <img class="sunflower-gif" src="https://media.giphy.com/media/l0HlRnAWXyn0XcFmM/giphy.gif" alt="Sunflower bouquet">
         </div>
-        <p class="sunflower-caption">These reminded me of you 🌻</p>
+        <div class="message">
+            These reminded me of you 🌻
+        </div>
     </div>
     
-    <a href="page4.html" class="arrow">→</a>
+    <div class="arrow" onclick="nextPage()">
+        <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round"/>
+        </svg>
+    </div>
     
-    <style>
-        @keyframes spin {
-            from { transform: translateX(-50%) rotate(0deg); }
-            to { transform: translateX(-50%) rotate(360deg); }
+    <script>
+        function nextPage() {
+            window.location.href = 'page4.html';
         }
-    </style>
+    </script>
 </body>
 </html>
